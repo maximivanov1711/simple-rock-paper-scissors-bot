@@ -8,7 +8,7 @@ from loader import dp
 
 @dp.message_handler(GameWord())
 async def play(message: types.Message):
-    game_words = ["rock", "paper", "scissors"]
+    game_words = ["камень", "ножницы", "бумага"]
     bot_word = random.choice(game_words)
     user_word = message.text.lower()
 
@@ -16,9 +16,9 @@ async def play(message: types.Message):
                         f"Вы показали: {user_word} \n"
                         f"Бот показал: {bot_word} \n")
 
-    if (user_word == "rock" and bot_word == "scissors" \
-            or user_word == "scissors" and bot_word == "paper" \
-            or user_word == "paper" and bot_word == "rock"):
+    if (user_word == "камень" and bot_word == "ножницы" \
+            or user_word == "ножницы" and bot_word == "бумага" \
+            or user_word == "бумага" and bot_word == "камень"):
         await message.answer("Вы выиграли!")
     elif user_word == bot_word:
         await message.answer("Ничья!")
@@ -29,4 +29,4 @@ async def play(message: types.Message):
 @dp.message_handler()
 async def unknown_word(message: types.Message):
     user_text = message.text
-    await message.reply(f"Unknown word: {user_text}")
+    await message.reply(f"Неизвестное слово: {user_text}")
